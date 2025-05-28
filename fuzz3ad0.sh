@@ -42,6 +42,10 @@ show_menu() {
     echo
     echo -e "${YELLOW}URL objetivo actual: ${GREEN}$TARGET_URL${NC}"
     echo
+    echo -e "${BLUE}Redes:${NC}"
+    echo -e "${YELLOW}LinkedIn:${NC} www.linkedin.com/in/axel-tear"
+    echo -e "${YELLOW}GitHub:${NC} https://github.com/oliverexx"
+    echo
     echo "1. Fuzzing de Directorios y Archivos"
     echo "2. Fuzzing de Parámetros y Valores"
     echo "3. Fuzzing de VHOST y Subdominios"
@@ -1038,12 +1042,12 @@ show_rest_api_fuzzing() {
     echo
     echo -e "${YELLOW}2. Autenticación:${NC}"
     echo "1. Basic Auth:"
-    echo "   curl -u usuario:password $TARGET_URL/api"
-    echo "   curl -H \"Authorization: Basic $(echo -n 'usuario:password' | base64)\" $TARGET_URL/api"
+    echo "   curl -u usuario:password http://adasda.com/api"
+    echo "   curl -H \"Authorization: Basic dXN1YXJpbzpwYXNzd29yZA==\" http://adasda.com/api"
     echo
     echo "2. Bearer Token:"
-    echo "   curl -H \"Authorization: Bearer token123\" $TARGET_URL/api"
-    echo "   curl -H \"Authorization: Bearer $(cat token.txt)\" $TARGET_URL/api"
+    echo "   curl -H \"Authorization: Bearer token123\" http://adasda.com/api"
+    echo "   curl -H \"Authorization: Bearer \$(cat token.txt)\" http://adasda.com/api"
     echo
     echo -e "${YELLOW}3. Headers comunes:${NC}"
     echo "Content-Type: application/json"
@@ -1054,20 +1058,20 @@ show_rest_api_fuzzing() {
     echo -e "${YELLOW}4. FFUF para API:${NC}"
     echo "1. Fuzzing de endpoints:"
     echo "   ffuf -X GET \\"
-    echo "        -u $TARGET_URL/items/FUZZ \\"
+    echo "        -u http://adasda.com/items/FUZZ \\"
     echo "        -w ids.txt \\"
     echo "        -mc 200"
     echo
     echo "2. Fuzzing con autenticación:"
     echo "   ffuf -X GET \\"
     echo "        -H \"Authorization: Bearer token123\" \\"
-    echo "        -u $TARGET_URL/api/FUZZ \\"
+    echo "        -u http://adasda.com/api/FUZZ \\"
     echo "        -w endpoints.txt \\"
     echo "        -mc 200"
     echo
     echo "3. Fuzzing de parámetros:"
     echo "   ffuf -X GET \\"
-    echo "        -u $TARGET_URL/api?param=FUZZ \\"
+    echo "        -u http://adasda.com/api?param=FUZZ \\"
     echo "        -w params.txt \\"
     echo "        -mc 200"
     echo
@@ -1075,24 +1079,24 @@ show_rest_api_fuzzing() {
     echo "   ffuf -X POST \\"
     echo "        -H \"Content-Type: application/json\" \\"
     echo "        -d '{\"user\":\"FUZZ\"}' \\"
-    echo "        -u $TARGET_URL/api/login \\"
+    echo "        -u http://adasda.com/api/login \\"
     echo "        -mc 200"
     echo
     echo -e "${YELLOW}5. Técnicas avanzadas:${NC}"
     echo "1. Fuzzing de versiones:"
-    echo "   ffuf -u $TARGET_URL/vFUZZ/api \\"
+    echo "   ffuf -u http://adasda.com/vFUZZ/api \\"
     echo "        -w versions.txt \\"
     echo "        -mc 200"
     echo
     echo "2. Fuzzing de métodos HTTP:"
     echo "   ffuf -X FUZZ \\"
-    echo "        -u $TARGET_URL/api \\"
+    echo "        -u http://adasda.com/api \\"
     echo "        -w methods.txt \\"
     echo "        -mc 200"
     echo
     echo "3. Fuzzing de headers:"
     echo "   ffuf -H \"FUZZ: value\" \\"
-    echo "        -u $TARGET_URL/api \\"
+    echo "        -u http://adasda.com/api \\"
     echo "        -w headers.txt \\"
     echo "        -mc 200"
     echo
@@ -1104,6 +1108,89 @@ show_rest_api_fuzzing() {
     echo "5. Considera el rate limiting"
     echo "6. Valida las respuestas manualmente"
     echo "7. Busca documentación (Swagger, OpenAPI)"
+}
+
+# Función para mostrar la sección de redes
+show_network_fuzzing() {
+    echo -e "\n${BLUE}=== FUZZING DE REDES ===${NC}"
+    echo
+    echo -e "${YELLOW}1. NMAP - Escaneo básico:${NC}"
+    echo "1. Escaneo rápido:"
+    echo "   # Escaneo rápido de puertos comunes"
+    echo "   # -T4: velocidad de escaneo"
+    echo "   # -F: solo puertos más comunes"
+    echo "   nmap -T4 -F asdas.com"
+    echo
+    echo "2. Escaneo completo:"
+    echo "   # Escaneo de todos los puertos"
+    echo "   # -p-: todos los puertos"
+    echo "   # -sV: detección de versiones"
+    echo "   nmap -p- -sV asdas.com"
+    echo
+    echo "3. Escaneo con scripts:"
+    echo "   # Ejecuta scripts de detección"
+    echo "   # -sC: scripts por defecto"
+    echo "   # --script vuln: scripts de vulnerabilidades"
+    echo "   nmap -sC --script vuln asdas.com"
+    echo
+    echo -e "${YELLOW}2. MASSCAN - Escaneo rápido:${NC}"
+    echo "1. Escaneo de puertos:"
+    echo "   # Escaneo rápido de puertos"
+    echo "   # -p: puertos a escanear"
+    echo "   # --rate: paquetes por segundo"
+    echo "   masscan asdas.com -p80,443,8080 --rate=1000"
+    echo
+    echo "2. Escaneo de rangos:"
+    echo "   # Escaneo de rangos de IP"
+    echo "   # -p: puertos a escanear"
+    echo "   masscan 10.0.0.0/24 -p80,443"
+    echo
+    echo -e "${YELLOW}3. RUSTSCAN - Escaneo moderno:${NC}"
+    echo "1. Escaneo básico:"
+    echo "   # Escaneo rápido y moderno"
+    echo "   # -a: dirección objetivo"
+    echo "   # -r: rango de puertos"
+    echo "   rustscan -a asdas.com -r 1-1000"
+    echo
+    echo "2. Escaneo con nmap:"
+    echo "   # Combina con nmap para más detalles"
+    echo "   # -- -sV: pasa argumentos a nmap"
+    echo "   rustscan -a asdas.com -r 1-1000 -- -sV"
+    echo
+    echo -e "${YELLOW}4. NETCAT - Pruebas manuales:${NC}"
+    echo "1. Conexión TCP:"
+    echo "   # Prueba de conexión TCP"
+    echo "   # -v: modo verbose"
+    echo "   nc -v asdas.com 80"
+    echo
+    echo "2. Escaneo de puertos:"
+    echo "   # Escaneo básico de puertos"
+    echo "   # -z: solo escaneo"
+    echo "   # -v: modo verbose"
+    echo "   nc -zv asdas.com 20-30"
+    echo
+    echo -e "${YELLOW}5. HYDRA - Fuerza bruta:${NC}"
+    echo "1. Fuerza bruta SSH:"
+    echo "   # Prueba credenciales SSH"
+    echo "   # -l: usuario"
+    echo "   # -P: archivo de contraseñas"
+    echo "   hydra -l admin -P passwords.txt ssh://asdas.com"
+    echo
+    echo "2. Fuerza bruta FTP:"
+    echo "   # Prueba credenciales FTP"
+    echo "   # -L: archivo de usuarios"
+    echo "   # -P: archivo de contraseñas"
+    echo "   hydra -L users.txt -P passwords.txt ftp://asdas.com"
+    echo
+    echo -e "${PURPLE}Notas importantes:${NC}"
+    echo "1. Ajusta la velocidad según la red"
+    echo "2. Usa diferentes herramientas para mejor cobertura"
+    echo "3. Documenta los hallazgos importantes"
+    echo "4. Considera el firewall y las políticas de red"
+    echo "5. Valida manualmente los resultados"
+    echo "6. Mantén las herramientas actualizadas"
+    echo "7. Respeta las políticas de seguridad"
+    echo "8. Obtén autorización antes de escanear"
 }
 
 # Bucle principal
