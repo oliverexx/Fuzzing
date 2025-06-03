@@ -1,4 +1,4 @@
-# fuzz3ad0.sh
+# fuzz3a2.sh
 # Guía de Fuzzing Web
 Este script proporciona una guía interactiva para realizar diferentes tipos de fuzzing web, incluyendo directorios, parámetros, subdominios y más.
 ## 🛠️ Dependencias
