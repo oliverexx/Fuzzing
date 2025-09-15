@@ -1,12 +1,40 @@
 #!/bin/bash
 
-# Colores para la salida
+# Colores para la interfaz
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
+
+# Configuración global
+DOMAIN="lab.local"
+DC_IP="192.168.1.10"
+USERNAME=""
+PASSWORD=""
+NTLM_HASH=""
+TARGET_IP="192.168.1.20"
+
+# Función para mostrar el banner
+show_banner() {
+    clear
+    echo -e "${BLUE}"
+    echo "===================================================================================="
+    echo "|                         PENTESTING EN ACTIVE DIRECTORY                           |"
+    echo "|                         Manual de Comandos y Técnicas                            |"
+    echo "===================================================================================="
+    echo -e "${NC}"
+    echo -e "${YELLOW}Domain:${NC} $DOMAIN"
+    echo -e "${YELLOW}Domain Controller:${NC} $DC_IP"
+    echo -e "${YELLOW}Usuario:${NC} $USERNAME"
+    echo "==================================================================================================="
+    echo -e "${RED}NOTA: Esta es una guía informativa. Los comandos se muestran pero no se ejecutan.${NC}"
+    echo -e "${RED}Creator: github: https://github.com/oliverexx Linkedin:www.linkedin.com/in/axel-tear${NC}"
+    echo "==================================================================================================="
+    echo
+}
 
 # Variables globales
 TARGET_URL=""
